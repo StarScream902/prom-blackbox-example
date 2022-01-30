@@ -1,0 +1,15 @@
+version: '3.6'
+
+services:
+  blackbox-exporter:
+    image: bitnami/blackbox-exporter:0.19.0
+    ports:
+      - 9115:9115
+
+  prometheus:
+    image: prom/prometheus:v2.28.0
+    command: --config.file=/etc/prometheus/config/prometheus.yaml
+    volumes:
+      - ./prom/prometheus.yaml:/etc/prometheus/config/prometheus.yaml
+    ports:
+      - 9090:9090
